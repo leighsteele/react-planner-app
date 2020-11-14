@@ -1,0 +1,37 @@
+button {
+  border: none;
+  margin: 0 5px;
+  background-color: transparent;
+}
+
+i {
+  background-color: transparent;
+}
+
+i:hover {
+  color: rgb(0, 89, 255);
+}
+
+.App {
+  text-align: center;
+}
+
+.App-body {
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main-div {
+  height: 100vh;
+  width: 700px;
+}
+
+.task-edit-input {
+  height: 30px;
+}
+
+.reset-btn {
+  width: 48px;
+}
