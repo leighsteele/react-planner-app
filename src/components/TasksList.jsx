@@ -16,7 +16,7 @@ const TasksList = (props) => {
                     favorite={task.favorite}
                     handleDoneClick={props.handleDoneClick}
                     handleFavoriteClick={props.handleFavoriteClick}
-                    deleteTask={props.deleteTask}
+                    handleDelete={props.handleDelete}
                     handleEdit={props.handleEdit}
                 />
             )}

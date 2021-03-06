@@ -51,6 +51,12 @@ class TaskForm extends React.Component {
         })
     }
 
+    deleteData(taskId) {
+        const db = firebase.database();
+        const ref = taskId ? db.ref("todos/" + taskId) : db.ref("todos/");
+        ref.remove();
+    }
+
     addItemOnSubmit(event) {
         event.preventDefault();
 
@@ -121,16 +127,16 @@ class TaskForm extends React.Component {
         )
     }
 
-    deleteTask(id) {
-        const taskIndex = this.state.tasksList.findIndex(task => id === task.id)
-        this.state.tasksList.splice(taskIndex, 1);
-
+    handleDelete(id) {
+        this.deleteData(id);
+        const newTasksList = [...this.state.tasksList.filter(task => id !== task.id)];
         this.setState(
-            { tasksList: [...this.state.tasksList] }
+            { tasksList: newTasksList }
         )
     }
 
     handleReset() {
+        this.deleteData();
         this.setState(
             { tasksList: [] }
         )
@@ -176,12 +182,12 @@ class TaskForm extends React.Component {
 
                 <div className="m-5" >
                     <h5 className="bg-primary text-white p-3 m-0 font-weight-light">To Do</h5>
-                    <TasksList tasksList={todoList} handleDoneClick={this.handleDoneClick.bind(this)} handleFavoriteClick={this.handleFavoriteClick.bind(this)} deleteTask={this.deleteTask.bind(this)} handleEdit={this.handleEdit.bind(this)} />
+                    <TasksList tasksList={todoList} handleDoneClick={this.handleDoneClick.bind(this)} handleFavoriteClick={this.handleFavoriteClick.bind(this)} handleDelete={this.handleDelete.bind(this)} handleEdit={this.handleEdit.bind(this)} />
                 </div>
 
                 <div className="m-5" >
                     <h5 className="bg-primary text-white p-3 m-0 font-weight-light">Done</h5>
-                    <TasksList tasksList={doneList} handleDoneClick={this.handleDoneClick.bind(this)} handleFavoriteClick={this.handleFavoriteClick.bind(this)} deleteTask={this.deleteTask.bind(this)} handleEdit={this.handleEdit.bind(this)} />
+                    <TasksList tasksList={doneList} handleDoneClick={this.handleDoneClick.bind(this)} handleFavoriteClick={this.handleFavoriteClick.bind(this)} handleDelete={this.handleDelete.bind(this)} handleEdit={this.handleEdit.bind(this)} />
                 </div>
             </div>
         );

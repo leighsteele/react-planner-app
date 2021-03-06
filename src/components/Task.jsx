@@ -81,7 +81,7 @@ class Task extends React.Component {
                         <button onClick={() => this.props.handleFavoriteClick(this.props.id)}>
                             {this.props.task.favorite ? <i className="fas fa-star"></i> : <i className="far fa-star"></i>}
                         </button>
-                        <button onClick={() => this.props.deleteTask(this.props.id)}>
+                        <button onClick={() => this.props.handleDelete(this.props.id)}>
                             <i className="far fa-trash-alt"></i>
                         </button>
                 </li>
